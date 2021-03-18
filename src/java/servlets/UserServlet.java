@@ -61,7 +61,7 @@ public class UserServlet extends HttpServlet {
 
         if (action.equals("delete")) {
 
-            String emailToBeDeleted = (String) request.getParameter("deleteradiobutton");
+            String emailToBeDeleted = (String) request.getParameter("radiobutton");
             UserService us = new UserService();
             try {
                 us.delete(emailToBeDeleted);

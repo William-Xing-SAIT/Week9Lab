@@ -1,9 +1,3 @@
-<%-- 
-    Document   : users
-    Created on : Mar 9, 2021, 1:19:53 PM
-    Author     : 799768
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -13,58 +7,103 @@
         <title>Users</title>
     </head>
     <body>
-        <form action="user?action=add" method="POST">
-            <h1>Add User</h1>
-            Email: <input type="text" name="email"> <br>
-            First Name: <input type="text" name="firstName"> <br>
-            Last Name: <input type="text" name="lastName"> <br>
-            Password: <input type="text" name="password"> <br>
-            Role:             
-            <select name="roles">
-                <option value="1">System Admin</option>
-                <option value="2">Regular User</option>
-                <option value="3">Company Admin</option>
-            </select> <br>
-            <input type="submit" value="Add">
-        </form>
-
-        <form action="user?action=delete" method="POST">
-            <h1>Delete Users</h1>
-            <table border="1">
+        <form method="POST">
+            <h1>Manage Users</h1>
+            <p>Pick a user to <!--edit or--> delete.</p>
+            <table border="1" style="width:50%; text-align: left;">
                 <tr>
-                    <th>Email</th>
-                    <th>Active</th>
+                    <th></th>
                     <th>First Name</th>
                     <th>Last Name</th>
+                    <th>Email</th>
                     <th>Role</th>
+                    <th>Active User?</th>
+
                 </tr>
                 <c:forEach var="user" items="${users}">
                     <tr>
-                        <td>${user.getEmail()}</td>
-                        <td>${user.isActive()}</td>
+                        <td> <input type="radio" name="radiobutton" value="${user.getEmail()}"/></td>
                         <td>${user.getFirstName()}</td>
                         <td>${user.getLastName()}</td>
+                        <td><a href="mailto:${user.getEmail()}">${user.getEmail()}</a></td>
                         <td>${user.getRoleName()}</td>
-                        <td>  <input type="radio" name="deleteradiobutton" value="${user.getEmail()}"/></td>
+                        <td>${user.isActive()}</td>
                     </tr>
                 </c:forEach>
             </table>
-            <input type="submit" value = "Delete">
+            <p></p>
+            <!--input type="submit" formaction="user?action=edit" value="Edit"-->
+            <input type="submit" formaction="user?action=delete" value="Delete">
         </form>
 
         <form action="user?action=edit" method="POST">
             <h1>Edit User</h1>
-            Email: <input type="text" name="emailToEdit"> <br>
-            First Name: <input type="text" name="firstNameToEdit"> <br>
-            Last Name: <input type="text" name="lastNameToEdit"> <br>
-            Password: <input type="text" name="passwordToEdit"> <br>
-            Role:             
-            <select name="rolesToEdit">
-                <option value="1">System Admin</option>
-                <option value="2">Regular User</option>
-                <option value="3">Company Admin</option>
-            </select> <br>
-            <input type="submit" value="Save Changes">          
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td><input type="text" name="firstNameToEdit"></td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><input type="text" name="lastNameToEdit"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="emailToEdit"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="passwordToEdit"></td>
+                </tr>
+                <tr>
+                    <td>Role:</td>
+                    <td>         
+                        <select name="rolesToEdit">
+                            <option value="1">System Admin</option>
+                            <option value="2">Regular User</option>
+                            <option value="3">Company Admin</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <p></p>
+            <input type="submit" value="Save">    
+            <input type="reset" value="Reset">
         </form>
     </body>
+
+    <form action="user?action=add" method="POST">
+        <h1>Add User</h1>
+        <table>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" name="firstName"></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" name="lastName"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td>Role:</td>
+                <td>         
+                    <select name="roles">
+                        <option value="1">System Admin</option>
+                        <option value="2">Regular User</option>
+                        <option value="3">Company Admin</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <p></p>
+        <input type="submit" value="Add">
+        <input type="reset" value="Reset">
+    </form>
 </html>
