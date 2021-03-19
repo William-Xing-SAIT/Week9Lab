@@ -25,6 +25,18 @@ public class UserServlet extends HttpServlet {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("message", "error");
         }
+
+        String action = request.getParameter("action");
+        if (action != null && action.equals("edit")) {
+            try {
+                String email = request.getParameter("email");
+                User user = us.get(email);
+                request.setAttribute("selectedUser", user);
+            } catch (Exception ex) {
+                Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                request.setAttribute("message", "error");
+            }
+        }
         getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
     }
 
@@ -79,9 +91,9 @@ public class UserServlet extends HttpServlet {
 
             getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
         }
-        
+
         if (action.equals("edit")) {
-            
+
             String email = (String) request.getParameter("emailToEdit");
             String firstName = (String) request.getParameter("firstNameToEdit");
             String lastName = (String) request.getParameter("lastNameToEdit");
@@ -105,7 +117,7 @@ public class UserServlet extends HttpServlet {
             }
             getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
         }
-        
+
     }
 
 }

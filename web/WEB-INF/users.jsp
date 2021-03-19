@@ -9,7 +9,7 @@
     <body>
         <form action="user?action=delete" method="POST">
             <h1>Manage Users</h1>
-            <p>Pick a user to <!--edit or--> delete.</p>
+            <p>Pick a user to edit or delete.</p>
             <table border="1" style="width:50%; text-align: left;">
                 <tr>
                     <th></th>
@@ -32,33 +32,73 @@
                 </c:forEach>
             </table>
             <p></p>
-            <!--input type="submit" formaction="user?action=edit" value="Edit"-->
+            <input type="submit" formaction="user?action=edit" value="Edit">
             <input type="submit"  value="Delete">
         </form>
 
+        <c:if test="${selectedUser eq null}">
+
+            <form action="user?action=edit" method="POST">
+                <h1>Edit User</h1>
+                <table>
+                    <tr>
+                        <td>First Name:</td>
+                        <td><input type="text" name="firstNameToEdit"></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td><input type="text" name="lastNameToEdit"></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text" name="emailToEdit"></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="password" name="passwordToEdit"></td>
+                    </tr>
+                    <tr>
+                        <td>Role:</td>
+                        <td>         
+                            <select name="rolesToEdit">
+                                <option value="1">System Admin</option>
+                                <option value="2">Regular User</option>
+                                <option value="3">Company Admin</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <p></p>
+                <input type="submit" value="Save">    
+                <input type="reset" value="Reset">
+            </form>
+        </body>
+    </c:if>
+
+    <c:if test="${selectedUser ne null}">
         <form action="user?action=edit" method="POST">
             <h1>Edit User</h1>
             <table>
                 <tr>
                     <td>First Name:</td>
-                    <td><input type="text" name="firstNameToEdit"></td>
+                    <td><input type="text" name="firstNameToEdit" value="${selectedUser.firstName}"></td>
                 </tr>
                 <tr>
                     <td>Last Name:</td>
-                    <td><input type="text" name="lastNameToEdit"></td>
+                    <td><input type="text" name="lastNameToEdit" value="${selectedUser.lastName}"></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input type="text" name="emailToEdit"></td>
+                    <td><input type="text" name="emailToEdit" value="${selectedUser.email}"></td>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input type="password" name="passwordToEdit"></td>
+                    <td><input type="password" name="passwordToEdit" value="${selectedUser.password}"></td>
                 </tr>
                 <tr>
                     <td>Role:</td>
                     <td>         
-                        <select name="rolesToEdit">
+                        <select name="rolesToEdit" value="${selectedUser.role.roleName}">
                             <option value="1">System Admin</option>
                             <option value="2">Regular User</option>
                             <option value="3">Company Admin</option>
@@ -71,39 +111,40 @@
             <input type="reset" value="Reset">
         </form>
     </body>
+</c:if>
 
-    <form action="user?action=add" method="POST">
-        <h1>Add User</h1>
-        <table>
-            <tr>
-                <td>First Name:</td>
-                <td><input type="text" name="firstName"></td>
-            </tr>
-            <tr>
-                <td>Last Name:</td>
-                <td><input type="text" name="lastName"></td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td><input type="text" name="email"></td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td><input type="password" name="password"></td>
-            </tr>
-            <tr>
-                <td>Role:</td>
-                <td>         
-                    <select name="roles">
-                        <option value="1">System Admin</option>
-                        <option value="2">Regular User</option>
-                        <option value="3">Company Admin</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-        <p></p>
-        <input type="submit" value="Add">
-        <input type="reset" value="Reset">
-    </form>
+<form action="user?action=add" method="POST">
+    <h1>Add User</h1>
+    <table>
+        <tr>
+            <td>First Name:</td>
+            <td><input type="text" name="firstName"></td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td><input type="text" name="lastName"></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="email"></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+            <td>Role:</td>
+            <td>         
+                <select name="roles">
+                    <option value="1">System Admin</option>
+                    <option value="2">Regular User</option>
+                    <option value="3">Company Admin</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <p></p>
+    <input type="submit" value="Add">
+    <input type="reset" value="Reset">
+</form>
 </html>

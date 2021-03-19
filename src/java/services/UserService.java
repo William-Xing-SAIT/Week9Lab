@@ -22,8 +22,8 @@ public class UserService {
     public void insert(String email, Boolean active, String firstName, String lastName, String password, int roleID) throws Exception {
         User user = new User(email, active, firstName, lastName, password);
         RoleDB roleDB = new RoleDB();
-        Role role = roleDB.get(email);
-        role.setRoleId(roleID);
+        Role role = roleDB.get(roleID);
+        user.setRole(role);
         
         UserDB userDB = new UserDB();
         userDB.insert(user);

@@ -38,7 +38,7 @@ public class UserDB {
 
         try {
             Role role = user.getRole();
-            em.createNamedQuery("User.findAll", User.class).getResultList().add(user);
+            role.getUserList().add(user);
             trans.begin();
             em.persist(user);
             em.merge(role);
@@ -71,7 +71,7 @@ public class UserDB {
 
         try {
             Role role = user.getRole();
-            em.createNamedQuery("User.findAll", User.class).getResultList().remove(user);
+            role.getUserList().remove(user);
             trans.begin();
             em.remove(em.merge(user));
             em.merge(role);

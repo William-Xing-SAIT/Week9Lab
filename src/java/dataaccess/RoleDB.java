@@ -21,11 +21,11 @@ public class RoleDB {
         }
     }
     
-    public Role get(String email) throws Exception {
+    public Role get(int roleID) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
 
         try {
-           Role role = em.find(Role.class, email);
+           Role role = em.find(Role.class, roleID);
            return role;
         } finally {
             em.close();
