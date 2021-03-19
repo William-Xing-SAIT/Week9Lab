@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Users</title>
+        <title>User Database</title>
     </head>
     <body>
         <form action="user?action=delete" method="POST">
@@ -22,12 +22,12 @@
                 </tr>
                 <c:forEach var="user" items="${users}">
                     <tr>
-                        <td> <input type="radio" name="radiobutton" value="${user.getEmail()}"/></td>
-                        <td>${user.getFirstName()}</td>
-                        <td>${user.getLastName()}</td>
-                        <td><a href="mailto:${user.getEmail()}">${user.getEmail()}</a></td>
-                        <td>${user.getRole.getRoleName()}</td>
-                        <td>${user.getActive()}</td>
+                        <td> <input type="radio" name="radiobutton" value="${user.email}"/></td>
+                        <td>${user.firstName}</td>
+                        <td>${user.lastName}</td>
+                        <td><a href="mailto:${user.email}">${user.email}</a></td>
+                        <td>${user.role.roleName}</td>
+                        <td>${user.active}</td>
                     </tr>
                 </c:forEach>
             </table>

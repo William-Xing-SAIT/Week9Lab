@@ -24,6 +24,7 @@ public class UserService {
         RoleDB roleDB = new RoleDB();
         Role role = roleDB.get(email);
         role.setRoleId(roleID);
+        
         UserDB userDB = new UserDB();
         userDB.insert(user);
     }
