@@ -7,7 +7,7 @@
         <title>Users</title>
     </head>
     <body>
-        <form method="POST">
+        <form action="user?action=delete" method="POST">
             <h1>Manage Users</h1>
             <p>Pick a user to <!--edit or--> delete.</p>
             <table border="1" style="width:50%; text-align: left;">
@@ -26,14 +26,14 @@
                         <td>${user.getFirstName()}</td>
                         <td>${user.getLastName()}</td>
                         <td><a href="mailto:${user.getEmail()}">${user.getEmail()}</a></td>
-                        <td>${user.getRoleName()}</td>
-                        <td>${user.isActive()}</td>
+                        <td>${user.getRole.getRoleName()}</td>
+                        <td>${user.getActive()}</td>
                     </tr>
                 </c:forEach>
             </table>
             <p></p>
             <!--input type="submit" formaction="user?action=edit" value="Edit"-->
-            <input type="submit" formaction="user?action=delete" value="Delete">
+            <input type="submit"  value="Delete">
         </form>
 
         <form action="user?action=edit" method="POST">
