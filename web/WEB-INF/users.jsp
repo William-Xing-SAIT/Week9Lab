@@ -18,6 +18,7 @@
                     <th>Email</th>
                     <th>Role</th>
                     <th>Active User?</th>
+                    <th></th>
 
                 </tr>
                 <c:forEach var="user" items="${users}">
@@ -28,6 +29,7 @@
                         <td><a href="mailto:${user.email}">${user.email}</a></td>
                         <td>${user.role.roleName}</td>
                         <td>${user.active}</td>
+                        <td><a href="user?action=edit&amp;email=${user.email}">Edit</a></td>
                     </tr>
                 </c:forEach>
             </table>
