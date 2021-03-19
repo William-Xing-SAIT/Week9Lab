@@ -9,37 +9,36 @@
     <body>
         <form action="user?action=delete" method="POST">
             <h1>Manage Users</h1>
-            <p>Pick a user to edit or delete.</p>
+            <p>To delete, pick on any of the users, and then press the Delete button.</p>
+            <p>To edit, pick on the check icon representing a user, and the information will show up on 'Edit Form' below.</p>
             <table border="1" style="width:50%; text-align: left;">
                 <tr>
-                    <th></th>
+                    <th>Delete</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Role</th>
                     <th>Active User?</th>
-                    <th></th>
+                    <th>Edit</th>
 
                 </tr>
                 <c:forEach var="user" items="${users}">
                     <tr>
-                        <td> <input type="radio" name="radiobutton" value="${user.email}"/></td>
+                        <td><input type="radio" name="radiobutton" value="${user.email}"/></td>
                         <td>${user.firstName}</td>
                         <td>${user.lastName}</td>
                         <td><a href="mailto:${user.email}">${user.email}</a></td>
                         <td>${user.role.roleName}</td>
                         <td>${user.active}</td>
-                        <td><a href="user?action=edit&amp;email=${user.email}">Edit</a></td>
+                        <td><a href="user?action=edit&amp;email=${user.email}">✅</a></td>
                     </tr>
                 </c:forEach>
             </table>
             <p></p>
-            <input type="submit" formaction="user?action=edit" value="Edit">
             <input type="submit"  value="Delete">
         </form>
 
         <c:if test="${selectedUser eq null}">
-
             <form action="user?action=edit" method="POST">
                 <h1>Edit User</h1>
                 <table>
